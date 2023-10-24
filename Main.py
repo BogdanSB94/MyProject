@@ -1,66 +1,37 @@
-from abc import ABC, abstractmethod
+import datetime
 
-class FormaGeometrica(ABC):
+class Factura:
+    # Atribut constant pentru serie
+    SERIE = "X"  # Înlocuiți "X" cu seria reală pe care doriți să o utilizați
 
-    PI = 3.14
+    def __init__(self, numar, nume_produs, cantitate, pret_buc):
+        self.numar = numar
+        self.nume_produs = nume_produs
+        self.cantitate = cantitate
+        self.pret_buc = pret_buc
 
-    @abstractmethod
-    def aria(self):
-        pass
+    def schimba_cantitatea(self, cantitate):
+        self.cantitate = cantitate
 
-    def descrie(self):
-        print("Cel mai probabil am colturi")
+    def schimba_pretul(self, pret):
+        self.pret_buc = pret
 
-class Patrat(FormaGeometrica):
+    def schimba_nume_produs(self, nume):
+        self.nume_produs = nume
 
-    __latura = None
+    def genereaza_factura(self):
+        data_azi = datetime.date.today()
+        total = self.cantitate * self.pret_buc
 
-    def __init__(self, latura):
-        self.__latura = latura
-
-    def aria(self):
-        aria = self.__latura * self.__latura
-        return aria
-
-    def set_latura(self, __latura):
-        self.__latura = __latura
-
-    def get_latura(self):
-        return self.__latura
-
-class Cerc(FormaGeometrica):
-
-    __raza = None
-
-    def __init__(self, raza):
-        self.__raza = raza
-
-    def get_raza(self):
-        return self.__raza
-
-    def set_raza(self, raza):
-        self.__raza = raza
-
-    def delete_raza(self):
-        self.__raza = None
-
-    def aria(self):
-        aria = self.PI * self.__raza * self.__raza
-        return aria
-
-    def descrie(self):
-        print("Eu nu am colturi")
+        print(f"Factura seria {Factura.SERIE} număr {self.numar}")
+        print(f"Data: {data_azi}")
+        print("Produs | cantitate | preț bucată | Total")
+        print(f"{self.nume_produs} |    {self.cantitate}    | {self.pret_buc}          | {total}")
 
 
-patrat1 = Patrat(4)
-cerc1 = Cerc(5)
-
-patrat1.set_latura(5)
-print(patrat1.get_latura())
-print(patrat1.aria())
+# Exemplu de utilizare:
+factura1 = Factura(1, "Telefon", 7, 700)
+factura1.genereaza_factura()
 
 
-cerc1.descrie()
-print(cerc1.aria())
-cerc1.delete_raza()
-print(cerc1.get_raza())
+
