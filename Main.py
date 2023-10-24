@@ -1,8 +1,8 @@
 import datetime
 
 class Factura:
-    # Atribut constant pentru serie
-    SERIE = "X"  # Înlocuiți "X" cu seria reală pe care doriți să o utilizați
+
+    SERIE = None
 
     def __init__(self, numar, nume_produs, cantitate, pret_buc):
         self.numar = numar
@@ -29,7 +29,7 @@ class Factura:
         print(f"{self.nume_produs} |    {self.cantitate}    | {self.pret_buc}          | {total}")
 
 
-# Exemplu de utilizare:
+
 factura1 = Factura(1, "Telefon", 7, 700)
 factura1.genereaza_factura()
 
